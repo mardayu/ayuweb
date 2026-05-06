@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portofolio Lucu — Nama Kamu</title>
+
+<!-- Google Font (opsional) -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1: #fff7ff;
+    --bg2: #f0fff6;
+    --accent: #ff77b5;
+    --accent-2: #8bd9ff;
+    --card: #ffffff;
+    --muted: #6b6b6b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, var(--bg1), transparent),
+                radial-gradient(900px 500px at 95% 90%, var(--bg2), transparent),
+                linear-gradient(135deg, #fffefe 0%, #fffaf3 100%);
+    color:#222;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:40px 20px;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* Container */
+  .wrap{
+    width:100%;
+    max-width:980px;
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    gap:24px;
+    align-items:start;
+  }
+
+  /* Cute floating shapes */
+  .shape{
+    position:fixed;
+    border-radius:50%;
+    opacity:0.12;
+    pointer-events:none;
+    filter: blur(10px);
+    animation: float 8s ease-in-out infinite alternate;
+  }
+  .shape.s1{width:160px;height:160px;background:linear-gradient(135deg,var(--accent),#ffd6e8); left:5%; top:10%}
+  .shape.s2{width:90px;height:90px;background:linear-gradient(135deg,var(--accent-2),#cfeeff); right:6%; bottom:15%; animation-duration:10s}
+  @keyframes float{ transform: translateY(-14px) translateX(6px) }
+
+  /* Left profile card */
+  .profile-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+    border-radius:18px;
+    padding:24px;
+    box-shadow: 0 10px 30px rgba(100,90,120,0.08);
+    position:relative;
+    overflow:visible;
+  }
+  .avatar{
+    width:120px;height:120px;border-radius:50%;
+    border:6px solid #fff; box-shadow:0 8px 18px rgba(0,0,0,0.08);
+    object-fit:cover;
+    display:block;
+    margin:-80px auto 12px;
+    background: linear-gradient(45deg, #fff, #fff);
+  }
+  .name{
+    text-align:center;
+    font-size:20px;
+    font-weight:800;
+    margin:6px 0 4px;
+    letter-spacing:0.4px;
+  }
+  .role{
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:14px;
+  }
+  .bio{
+    font-size:14px;
+    line-height:1.35;
+    color:#444;
+    text-align:center;
+    padding:0 6px;
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin-top:14px;
+  }
+  .tag{
+    background:linear-gradient(90deg, rgba(255,119,181,0.12), rgba(139,217,255,0.08));
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:12px;
+    color:#444;
+    box-shadow: inset 0 -4px 10px rgba(255,255,255,0.12);
+  }
+
+  /* Right content */
+  .content{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    padding:18px;
+    box-shadow: 0 8px 26px rgba(40,30,60,0.04);
+  }
+  .header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+  }
+  .title{
+    font-weight:800;
+    font-size:18px;
+  }
+  .sm{
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* Projects grid */
+  .projects{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:12px;
+  }
+  .project{
+    padding:12px;
+    border-radius:12px;
+    background: linear-gradient(180deg,#fff,#fffaf6);
+    border:1px solid rgba(0,0,0,0.03);
+    cursor:pointer;
+    transition: transform .17s ease;
+  }
+  .project:hover{ transform: translateY(-6px) }
+  .project .p-title{ font-weight:700; margin-bottom:6px; font-size:14px }
+  .project .p-desc{ color:var(--muted); font-size:13px }
+
+  /* Skills & contact */
+  .skills{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px }
+  .skill{ background:#f6f8ff;padding:8px 10px;border-radius:10px;font-weight:700;font-size:13px }
+
+  .contact{
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  }
+  .btn{
+    padding:8px 12px;border-radius:12px;background:linear-gradient(90deg,var(--accent),#ffb6db);
+    color:white;font-weight:800;border:none;cursor:pointer;box-shadow:0 8px 22px rgba(255,119,181,0.12);
+  }
+  .ghost{ background:transparent;border:1px solid rgba(0,0,0,0.06); padding:8px 10px;border-radius:10px; }
+
+  /* Footer small */
+  .small{ font-size:12px;color:var(--muted) }
+
+  /* Responsive */
+  @media (max-width:860px){
+    .wrap{ grid-template-columns: 1fr; padding-top:90px; gap:18px; }
+    .avatar{ margin-top:-60px; width:110px; height:110px }
+    .projects{ grid-template-columns: 1fr }
+  }
+
+  /* Floating emoji mini */
+  .emoji{
+    position:absolute;
+    right:12px;
+    top:-22px;
+    font-size:32px;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,0.06));
+  }
+
+  /* Tiny modal (project preview) */
+  .modal{
+    position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(10,10,20,0.36); visibility:hidden; opacity:0; transition:all .18s;
+  }
+  .modal.open{ visibility:visible; opacity:1 }
+  .modal .box{
+    background:white; padding:18px; border-radius:12px; width:92%; max-width:560px;
+    box-shadow:0 30px 80px rgba(20,20,40,0.18);
+  }
+  .modal .close{ float:right; cursor:pointer; font-weight:800; padding:6px 8px; border-radius:8px }
+</style>
+</head>
+<body>
+
+  <!-- Cute soft shapes -->
+  <div class="shape s1" aria-hidden="true"></div>
+  <div class="shape s2" aria-hidden="true"></div>
+
+  <div class="wrap" role="main" aria-label="Portofolio lucu">
+    <!-- LEFT: profile -->
+    <aside class="profile-card card" aria-labelledby="profile-name">
+      <div class="emoji" aria-hidden="true">🌸</div>
+
+      <!-- Ganti src ke foto profilmu: contoh 'foto-profil.jpg' atau link langsung -->
+      <img class="avatar" src="https://i.ibb.co.com/CpTTYBGj/IMG20250112105825.jpg" alt="Foto profil 
+      <h1 id="profile-name" class="name"> hai!, saya marda ayu nuralisa✨</h1>
+      <div class="role">tentang saya</div>
+
+      <p class="bio"> Saya seorang pelajar dari smk plus al-farhan, saat ini saya duduk di kelas ll.2 dengan jurusan DKV (Desain Komunikasi Visual) saya bisa membuat sesuatu yang penuh warna dan cerita. membuat aplikasi, desain, atau sekadar coretan kecil,semua jadi cara saya untuk mengekspresikan diri 🎀✨. Di sini kamu bisa lihat project-project kecil saya yang saya buat dengan hati, semoga bisa bikin kamu tersenyum juga 💕..</p>
+
+      <div class="tags" aria-hidden="true">
+        <span class="tag">💖 lucu</span>
+        <span class="tag">🎨 UI/UX</span>
+        <span class="tag">⚛️ React</span>
+        <span class="tag">✨ Animasi</span>
+      </div>
+
+      <div style="margin-top:16px; text-align:center;">
+        <button class="btn" onclick="location.href='#projects'">Lihat Projek</button>
+        <button class="ghost" onclick="mailtoContact()">Hubungi</button>
+      </div>
+
+      <div style="margin-top:14px; text-align:center;" class="small">Lokasi • Indonesia · Bahasa: Indonesia</div>
+    </aside>
+
+    <!-- RIGHT: content -->
+    <section class="content">
+      <div class="card">
+        <div class="header">
+          <div>
+            <div class="title">Projek Terbaru</div>
+            <div class="sm">"Projek ini aku buat dengan penuh semangat dan kreativitas. Mulai dari ide, desain, sampai jadi hasil akhir, semuanya aku kerjakan dengan hati. Harapannya, projek ini bisa menginspirasi dan bermanfaat."</div>
+          </div>
+          <div class="sm">update: <strong>September 2025</strong></div>
+        </div>
+
+        <div id="projects" class="projects" aria-live="polite" style="margin-top:14px;">
+          <div class="project" onclick="openModal(0)">
+            <div class="p-title">Diary Pastel</div>
+            <div class="p-desc">Aplikasi catatan dengan tema pastel dan stiker imut.</div>
+          </div>
+          <div class="project" onclick="openModal(1)">
+            <div class="p-title">Timer Lucu</div>
+            <div class="p-desc">Pomodoro timer yang berubah-ubah warna tiap sesi.</div>
+          </div>
+          <div class="project" onclick="openModal(2)">
+            <div class="p-title">Portfolio React</div>
+            <div class="p-desc">Portofolio interaktif dengan animasi manis.</div>
+          </div>
+          <div class="project" onclick="openModal(3)">
+            <div class="p-title">Game Mini</div>
+            <div class="p-desc">Game tebakan kata sederhana—dengan emoji!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div class="title">Keahlian</div>
+            <div class="sm">Hal-hal yang saya suka pakai</div>
+          </div>
+          <div class="small">Pengalaman: 1-3 tahun</div>
+        </div>
+
+        <div class="skills" aria-hidden="true" style="margin-top:12px;">
+          <div class="skill">HTML</div>
+          <div class="skill">CSS</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">canva</div>
+          <div class="skill">Figma</div>
+        </div>
+
+        <div style="margin-top:12px" class="small">Butuh sesuatu yang disesuaikan? Saya senang bereksperimen dengan warna, ilustrasi, dan micro-interactions.</div>
+      </div>
+
+      <div class="card">
+        <div class="header">
+          <div>
+            <div class="title">Kontak</div>
+            <div class="sm">Mari ngopi (virtually) atau kerjasama</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="contact">
+          <button class="btn" onclick="mailtoContact()">Email: halo@domainmu.id</button>
+          <a class="ghost" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <a class="ghost" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+
+        <div style="margin-top:12px" class="small">Terbuka untuk freelance & proyek kecil.</div>
+      </div>
+
+      <div style="text-align:center; color:var(--muted); font-size:12px;">
+        dibangun dengan ❤️ • tema: lucu & pastel
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal preview -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="box" role="document">
+      <button class="close" onclick="closeModal()" aria-label="Tutup">✖</button>
+      <div id="modal-content">
+        <!-- konten diisi lewat JS -->
+      </div>
+    </div>
+  </div>
+
+<script>
+  // DATA PROJECT (mudah untuk ganti/expand)
+  const projects = [
+    {title:'Diary Pastel', desc:'Aplikasi catatan dengan stiker, tema pastel, dan kemampuan menyimpan di localStorage. Cocok untuk mood-logging.'},
+    {title:'Timer Lucu', desc:'Pomodoro timer warna-warni dengan suara lonceng kecil dan konfeti ketika selesai.'},
+    {title:'Portfolio React', desc:'Versi React dari portofolio ini, dengan animasi framer-motion dan halaman project terperinci.'},
+    {title:'Game Mini', desc:'Game tebakan kata sederhana yang pakai emoji untuk petunjuk.'}
+  ];
+
+  function openModal(i){
+    const m = document.getElementById('modal');
+    const content = document.getElementById('modal-content');
+    const p = projects[i] || {title:'Projek', desc:'Deskripsi...'};
+    content.innerHTML = `
+      <h2 style="margin:0 0 8px;font-size:18px;font-weight:800">${p.title} 🎉</h2>
+      <p style="color:#444;margin:0 0 10px">${p.desc}</p>
+      <p style="margin:0;font-size:13px;color:var(--muted)">Teknologi: HTML • CSS • JavaScript</p>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button class="btn" onclick="viewDemo('${i}')">Lihat Demo</button>
+        <button class="ghost" onclick="closeModal()">Tutup</button>
+      </div>
+    `;
+    m.classList.add('open');
+    m.setAttribute('aria-hidden','false');
+  }
+  function closeModal(){
+    const m=document.getElementById('modal');
+    m.classList.remove('open');
+    m.setAttribute('aria-hidden','true');
+  }
+  function viewDemo(i){
+    alert('Demo projek "' + (projects[i]?.title || 'Projek') + '" belum di-host. Kamu bisa mengganti fungsi ini untuk membuka live demo atau repo GitHub.');
+  }
+
+  function mailtoContact(){
+    window.location.href = 'mailto:halo@domainmu.id?subject=Halo%20dari%20portofolio&body=Hai!%20Saya%20ingin%20bekerja%20sama...';
+  }
+
+  // keyboard escape untuk tutup modal
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeModal();
+  });
+
+  // aksesibilitas: klik background modal untuk tutup
+  document.getElementById('modal').addEventListener('click', function(e){
+    if(e.target === this) closeModal();
+  });
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <h1>
+ 
